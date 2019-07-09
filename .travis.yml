@@ -10,15 +10,15 @@ before_install:
   - curl https://sdk.cloud.google.com | bash > /dev/null;
   - source $HOME/google-cloud-sdk/path.bash.inc
   - gcloud components update kubectl
-  - gcloud auth activate-service-account --key-file service-account.json
-  - gcloud config set project skilful-berm-214822
-  - gcloud config set compute/zone us-central1-a
+  - gcloud auth activate-service-account --key-file saju-service-account.json
+  - gcloud config set project saju-stafania-gcp-training
+  - gcloud config set compute/zone europe-west3-c
   - gcloud container clusters get-credentials multi-cluster
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker build -t stephengrider/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t safsavio/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run stephengrider/react-test npm test -- --coverage
+  - docker run safsavio/react-test npm test -- --coverage
 
 deploy:
   provider: script
